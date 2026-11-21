@@ -1,0 +1,191 @@
+/* Warm Neutral design system — copy-paste starter.
+   Tokens + generic component classes. Adapt names to the host project;
+   see SKILL.md for the recipes and rationale. */
+
+:root {
+  /* palette */
+  --primary: #e07e2a;          /* orange — CTAs, active data, brand */
+  --primary-hover: #c96d1f;
+  --on-primary: #ffffff;
+  --accent: #64748b;           /* slate — second data color only */
+  --bg: #f7f5f1;               /* warm off-white canvas, flat */
+  --fg: #26231e;
+  --card: #ffffff;
+  --muted-bg: #f1efea;         /* tracks, ghost buttons, nested panels */
+  --muted-bg-strong: #e9e6df;
+  --muted-fg: #8a857b;
+  --body-fg: #6e6a61;
+  --border: #e9e6e0;
+  --border-strong: #d9d5cc;
+
+  /* status tints (dot + text share the hue) */
+  --ok-fg: #217a46;
+  --ok-bg: #e7f3eb;
+  --warn-fg: #b25e09;
+  --warn-bg: #fceee0;
+  --destructive: #b91c1c;
+  --destructive-bg: #fdecea;
+
+  /* shape + motion */
+  --ring: #e07e2a;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(30, 26, 20, 0.05);
+  --shadow-hover: 0 10px 24px rgba(30, 26, 20, 0.08);
+  --speed: 220ms;
+}
+
+/* ---- Card ---- */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.card.hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Nested panel inside a card */
+.panel {
+  background: var(--muted-bg);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+/* ---- Segmented tabs ---- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--muted-bg);
+  border-radius: var(--radius-pill);
+}
+
+.tab {
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--body-fg);
+  font-weight: 600;
+  transition: all var(--speed) ease;
+}
+
+.tab:hover {
+  color: var(--fg);
+}
+
+.tab.active {
+  color: var(--fg);
+  border-color: var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  border: none;
+  font-weight: 600;
+  transition: all var(--speed) ease;
+}
+
+.btn.primary {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.btn.primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn.ghost {
+  color: var(--fg);
+  background: var(--muted-bg);
+}
+
+.btn.ghost:hover {
+  background: var(--muted-bg-strong);
+}
+
+/* ---- Status chip (dot + text, borderless) ---- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: none;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.chip.ok { color: var(--ok-fg); background: var(--ok-bg); }
+.chip.busy { color: var(--warn-fg); background: var(--warn-bg); }
+.chip.bad { color: var(--destructive); background: var(--destructive-bg); }
+.chip.off { color: var(--body-fg); background: var(--muted-bg); }
+
+/* ---- Progress bar ---- */
+
+.bar {
+  height: 5px;
+  border-radius: var(--radius-pill);
+  background: var(--muted-bg-strong);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.bar > span.active { background: var(--primary); }   /* compute / in-flight */
+.bar > span.storage { background: var(--accent); }   /* memory / storage */
+
+/* ---- Metric stat ---- */
+
+.stat-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+}
+
+/* ---- A11y ---- */
+
+.btn:focus-visible,
+.tab:focus-visible,
+.chip:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Brand gradient for logo marks / favicons:
+   linear-gradient(135deg, #F2A65A, #E07E2A 45%, #64748B) */
